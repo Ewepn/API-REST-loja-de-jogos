@@ -1,4 +1,10 @@
 import express from "express";
+import db from "./config/dbconnect.js";
+
+db.on("error", console.log.bind(console, "Erro de conexão !"));
+db.once("open", () => {
+	console.log("Conexão com o banco feita com sucesso");
+});
 
 const app = express();
 
@@ -25,7 +31,7 @@ app.get("/games/:id", (req, res) => {
 
 app.post("/games", (req, res) => {
 	games.push(req.body);
-	res.status(201).json("O Jogo foi cadastrado com sucesso !");
+	res.status(201).send("O Jogo foi cadastrado com sucesso !");
 });
 
 app.put("/games/:id", (req, res) => {
