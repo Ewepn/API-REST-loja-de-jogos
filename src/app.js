@@ -1,6 +1,7 @@
 import express from "express";
 import db from "./config/dbconnect.js";
 import games from "./models/Games.js";
+import routes from "./routes/index.js";
 
 db.on("error", console.log.bind(console, "Erro de conexão !"));
 db.once("open", () => {
@@ -11,20 +12,7 @@ const app = express();
 
 app.use(express.json());
 
-// const games = [
-// 	{ id: 1, title: "The Last of us" },
-// 	{ id: 2, title: "Uncharted 4 A thief's end" },
-// ];
-
-app.get("/", (req, res) => {
-	res.status(200).send("Home da loja");
-});
-
-app.get("/games", (req, res) => {
-	games.find((error, games) => {
-		res.status(200).json(games);
-	});
-});
+routes(app);
 
 app.get("/games/:id", (req, res) => {
 	let { id } = req.params;
