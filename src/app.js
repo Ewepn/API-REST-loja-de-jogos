@@ -20,11 +20,6 @@ app.get("/games/:id", (req, res) => {
 	res.status(200).json(games[index]);
 });
 
-app.post("/games", (req, res) => {
-	games.push(req.body);
-	res.status(201).send("O Jogo foi cadastrado com sucesso !");
-});
-
 app.put("/games/:id", (req, res) => {
 	let { id } = req.params;
 	let index = searchGame(id);
