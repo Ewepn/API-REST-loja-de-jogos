@@ -1,5 +1,5 @@
 import express from "express";
-import db from "./config/dbconnect.js";
+import db from "./config/dbConnect.js";
 import games from "./models/Games.js";
 import routes from "./routes/index.js";
 
