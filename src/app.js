@@ -14,19 +14,6 @@ app.use(express.json());
 
 routes(app);
 
-app.get("/games/:id", (req, res) => {
-	let { id } = req.params;
-	let index = searchGame(id);
-	res.status(200).json(games[index]);
-});
-
-app.put("/games/:id", (req, res) => {
-	let { id } = req.params;
-	let index = searchGame(id);
-	games[index].title = req.body.title;
-	res.status(201).json(games);
-});
-
 app.delete("/games/:id", (req, res) => {
 	let { id } = req.params;
 	let index = searchGame(id);

@@ -7,6 +7,20 @@ class GamesController {
 		});
 	};
 
+	static listGameById = (req, res) => {
+		const id = req.params.id;
+
+		games.findById(id, (error, games) => {
+			if (error) {
+				res.status(400).send({
+					message: `${error.message} - O Id buscado não foi encontrado`,
+				});
+			} else {
+				res.status(200).send(games);
+			}
+		});
+	};
+
 	static registerGame = (req, res) => {
 		let game = new games(req.body);
 
