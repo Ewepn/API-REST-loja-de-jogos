@@ -4,7 +4,7 @@ class GamesController {
 	static gamesList = (req, res) => {
 		games
 			.find()
-			.populate("developer", "name")
+			.populate("developer")
 			.exec((error, games) => {
 				if (!error) {
 					res.status(200).json(games);
@@ -19,7 +19,7 @@ class GamesController {
 
 		games
 			.findById(id)
-			.populate("developer")
+			.populate("developer", "name")
 			.exec((error, games) => {
 				if (error) {
 					res.status(400).send({
@@ -65,6 +65,21 @@ class GamesController {
 				res.status(500).send({ message: error.message });
 			}
 		});
+	};
+
+	static listGameByPublisher = (req, res) => {
+		const publisherName = req.query.publisher;
+
+		games
+			.find({ publisher: publisherName }, {})
+			.populate("developer")
+			.exec((error, games) => {
+				if (!error) {
+					res.status(200).send(games);
+				} else {
+					res.status(400).send({ message: error.message });
+				}
+			});
 	};
 }
 
