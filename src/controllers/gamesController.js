@@ -2,27 +2,33 @@ import games from "../models/Games.js";
 
 class GamesController {
 	static gamesList = (req, res) => {
-		games.find((error, games) => {
-			if (!error) {
-				res.status(200).json(games);
-			} else {
-				res.status(500).send({ message: error.message });
-			}
-		});
+		games
+			.find()
+			.populate("developer", "name")
+			.exec((error, games) => {
+				if (!error) {
+					res.status(200).json(games);
+				} else {
+					res.status(500).send({ message: error.message });
+				}
+			});
 	};
 
 	static listGameById = (req, res) => {
 		const id = req.params.id;
 
-		games.findById(id, (error, games) => {
-			if (error) {
-				res.status(400).send({
-					message: `${error.message} - O Id buscado não foi encontrado`,
-				});
-			} else {
-				res.status(200).send(games);
-			}
-		});
+		games
+			.findById(id)
+			.populate("developer")
+			.exec((error, games) => {
+				if (error) {
+					res.status(400).send({
+						message: `${error.message} - O Id buscado não foi encontrado`,
+					});
+				} else {
+					res.status(200).send(games);
+				}
+			});
 	};
 
 	static registerGame = (req, res) => {

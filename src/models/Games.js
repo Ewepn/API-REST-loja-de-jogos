@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const gameSchema = new mongoose.Schema({
 	id: { type: String },
 	title: { type: String, required: true },
-	developer: { type: String, required: true },
+	developer: { type: mongoose.Schema.Types.ObjectId, ref: "developer", required: true },
 	publisher: { type: String, required: true },
 	releaseYear: { type: Number, required: true },
 });
