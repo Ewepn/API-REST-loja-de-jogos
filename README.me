@@ -1,0 +1,58 @@
+// API Rest para Loja de jogos com Node.js //
+
+Projeto de construção de uma API REST para aprimorar os meus conhecimentos neste padrão de arquitetura, testar o uso de algumas ferramentas, fazer CRUD e criar uma conexão entre a aplicação e o banco de dados Mongodb.
+
+// Dependências //
+
+* express
+Usei o Express para a criação do sistema de rotas da API e gerenciar as requisições HTTP.
+
+* mongoose
+A comunicação da aplicação e o DB foi feita utilizando o mongoose, ODM que traduz os dados do banco de dados para objetos JavaScript.
+
+* nodemon
+Utilizado apenas para o restart automático do servidor após salvar uma auteração.
+
+// Banco de dados //
+
+* Mongodb atlas
+Utilizei um Nosql pela flexibilidade da extruturação, bom desempenho e para ter uma experiência com um banco não relacional.
+
+// API Client //
+
+* Postman
+Utilizei o Postman para testar as solicitações HTTP da API.
+
+// Como Utilizar //
+
+1 - Faça a instalação das dependências com o "npm install"
+
+2 - Crie sua conta e faça seu banco de dados no mongodb atlas após criar sua conta e seu primeiro banco vá na aba database clique no botão connect - connect your application - copie o codigo da tela.
+
+3 - Crie um arquivo com o nome dbConnect.js dentro da pasta "config" para configurar o login do banco de dados, faça a importação do mongosse e dentro de mongoose.connect cole o código copiado no passo 2 como mostrado abaixo e substitua com os seus dados do Mongodb atlas, Usuásio/Senha/Nome do databse.
+
+import mongoose from "mongoose";
+
+mongoose.connect(
+	`mongodb+srv://SEU_USUARIO_AQUI:SUA_SENHA_AQUI@api-rest.l3imijc.mongodb.net/NOME_DO_SEU_DATABASE_AQUI`
+);
+
+let db = mongoose.connection;
+
+export default db;
+
+4 - Adicione o arquivo dbConnect dentro da pasta .gitignore para proteger o seu login do Mongodb atlas caso queira postar o projeto com suas modificações no github ou utilize a biblioteca dotenv e crie as variáveis de ambiente com seu login.
+
+5 - Como informado eu utilizei o Postman para testar e fazer as requisições http (utilize o da sua preferência) para rodar o servidor foi criado um Script chamado "dev" dentro do arquivo package.json, rode o servidor local com o comando "npm run dev" no terminal (A API está rodando na porta 4002 se desejar mudar modifique no arquivo server.js linha 3).
+
+5 - Use como apoio para fazer as requisições no Postman as rotas criadas na pasta routes.
+
+// Versões das ferramentas e dependências //
+
+* Node.js v17.8.0
+* npm 8.5.5
+* nodemon 2.0.16
+* express 4.18.1
+* mongosse 6.4.0
+
+** A API foi feita apenas para estudar e melhorar meus conhecimentos nos frameworks e ferramentas utilizadas. 
